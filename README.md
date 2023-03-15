@@ -83,4 +83,22 @@ Host : www.example.org
 	+ Self-descriptive는 **custom media type**이나 **profile link relation** 등으로 만족시킬 수 있다.
 	+ HATEOAS는 HTTP 헤더나 본문에 **링크**를 담아 만족시킬 수 있다.
 - REST를 따르지 않겠다면, "REST를 만족하지 않는 REST API"를 뭐라고 부를지 결정해야 할 것이다.
-   
+
+
+# Event Project
+
+## Event domain 구현
+```java
+@Builder @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode(of = "id")
+public class Event {
+```
+- 왜 @EqualsAndHashCode에서 of를 사용하는가?    
+: Equals와 hashCode를 사용할 때 모든 필드를 기본으로 사용한다. 그런데 필드 간 연관관계가 상호참조일 때, Equlas와 hashCode를 구현한 코드에서 stackoverflow가 발생할 수 있기 때문, 그래서 주로 id의 값만 가지고 equals와 hashCode를 비교하도록 만들게 해놨다.
+원한다면 다른 몇 가지의 필드도 추가할 수 있다.
+- 왜 @Builder를 사용할 때 @AllArgsConstructor가 필요한가?    
+: Builder가 모든 필드에 접근하려면 모든 필드가 들어간 생성자가 필요하다.
+- 애노테이션을 줄일 수 없나?    
+: 커스텀 애노테이션을 만들어서 사용할 수 있지만, lombok은 메타애노테이션을 지원하지 않는다. -> 줄일 수 있는 방법이 없다.
+- @Data를 쓰지 않는 이유    
+: Entity에 @Data를 쓰면 상호참조때문에 stackoverflow 예외가 발생할 수 있기때문.
