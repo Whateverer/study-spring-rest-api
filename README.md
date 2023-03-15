@@ -1,8 +1,9 @@
 # study-spring-rest-api
 인프런 백기선 스프링 기반 REST API 개발
 
+# REST API 및 프로젝트 소개 
 
-# 그런 REST API로 괜찮은가
+## 그런 REST API로 괜찮은가
 
 ### REST
 "Representational State Transfer"
@@ -85,9 +86,9 @@ Host : www.example.org
 - REST를 따르지 않겠다면, "REST를 만족하지 않는 REST API"를 뭐라고 부를지 결정해야 할 것이다.
 
 
-# Event Project
+## Event Project
 
-## Event domain 구현
+### Event domain 구현
 ```java
 @Builder @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode(of = "id")
