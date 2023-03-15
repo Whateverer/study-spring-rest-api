@@ -1,7 +1,7 @@
 # study-spring-rest-api
 인프런 백기선 스프링 기반 REST API 개발
 
-# REST API 및 프로젝트 소개 
+# 1. REST API 및 프로젝트 소개 
 
 ## 그런 REST API로 괜찮은가
 
