@@ -1,8 +1,9 @@
 # study-spring-rest-api
 인프런 백기선 스프링 기반 REST API 개발
 
+# 1. REST API 및 프로젝트 소개 
 
-# 그런 REST API로 괜찮은가
+## 그런 REST API로 괜찮은가
 
 ### REST
 "Representational State Transfer"
@@ -83,4 +84,35 @@ Host : www.example.org
 	+ Self-descriptive는 **custom media type**이나 **profile link relation** 등으로 만족시킬 수 있다.
 	+ HATEOAS는 HTTP 헤더나 본문에 **링크**를 담아 만족시킬 수 있다.
 - REST를 따르지 않겠다면, "REST를 만족하지 않는 REST API"를 뭐라고 부를지 결정해야 할 것이다.
-   
+
+
+## Event Project
+
+## Event domain 구현
+```java
+@Builder @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode(of = "id")
+public class Event {
+```
+- 왜 @EqualsAndHashCode에서 of를 사용하는가?    
+: Equals와 hashCode를 사용할 때 모든 필드를 기본으로 사용한다. 그런데 필드 간 연관관계가 상호참조일 때, Equlas와 hashCode를 구현한 코드에서 stackoverflow가 발생할 수 있기 때문, 그래서 주로 id의 값만 가지고 equals와 hashCode를 비교하도록 만들게 해놨다.
+원한다면 다른 몇 가지의 필드도 추가할 수 있다.
+- 왜 @Builder를 사용할 때 @AllArgsConstructor가 필요한가?    
+: Builder가 모든 필드에 접근하려면 모든 필드가 들어간 생성자가 필요하다.
+- 애노테이션을 줄일 수 없나?    
+: 커스텀 애노테이션을 만들어서 사용할 수 있지만, lombok은 메타애노테이션을 지원하지 않는다. -> 줄일 수 있는 방법이 없다.
+- @Data를 쓰지 않는 이유    
+: Entity에 @Data를 쓰면 상호참조때문에 stackoverflow 예외가 발생할 수 있기때문.
+
+# 2. 이벤트 생성 API 개발 
+## 이벤트 API 테스트 클래스 생성
+스프링 부트 슬라이스 테스트 
+@MockMvc
+- 스프링 MVC 테스트 핵심 클래스 
+- 웹 서버를 띄우지 않고도 스프링 MVC(DispatcherServlet)가 요청을 처리하는 과정을 확인할 수 있기 때문에 컨트롤러 테스트용으로 자주 쓰임
+- 가짜 DispatcherServlet을 만들어서 임의의 요청을 보내 응답을 확인할 수 있게 함.
+
+```java
+mockMvc.perform(요청)
+```
+## 201 응답 받기
