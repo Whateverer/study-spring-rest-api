@@ -116,3 +116,10 @@ public class Event {
 mockMvc.perform(요청)
 ```
 ## 201 응답 받기
+## Event Repository 구현
+@MockBean 
+- Mockito를 사용해서 mock 객체를 만들고 빈으로 등록해줌.
+- (주의) 기존 빈을 테스트용 빈이 대체한다.
+
+MockMvc를 이용해서 기존의 Mock 웹이 있기 떄문에 EventRepository를 이용한 테스트가 실패 -> @MockBean으로 EventRepository를 넣어준다.
+
