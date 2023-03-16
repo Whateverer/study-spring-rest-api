@@ -1,4 +1,4 @@
-package me.whatever.event;
+package me.whatever.events;
 
 import lombok.*;
 
