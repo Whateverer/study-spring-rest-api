@@ -88,7 +88,7 @@ Host : www.example.org
 
 ## Event Project
 
-### Event domain 구현
+## Event domain 구현
 ```java
 @Builder @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @EqualsAndHashCode(of = "id")
@@ -103,3 +103,16 @@ public class Event {
 : 커스텀 애노테이션을 만들어서 사용할 수 있지만, lombok은 메타애노테이션을 지원하지 않는다. -> 줄일 수 있는 방법이 없다.
 - @Data를 쓰지 않는 이유    
 : Entity에 @Data를 쓰면 상호참조때문에 stackoverflow 예외가 발생할 수 있기때문.
+
+# 2. 이벤트 생성 API 개발 
+## 이벤트 API 테스트 클래스 생성
+스프링 부트 슬라이스 테스트 
+@MockMvc
+- 스프링 MVC 테스트 핵심 클래스 
+- 웹 서버를 띄우지 않고도 스프링 MVC(DispatcherServlet)가 요청을 처리하는 과정을 확인할 수 있기 때문에 컨트롤러 테스트용으로 자주 쓰임
+- 가짜 DispatcherServlet을 만들어서 임의의 요청을 보내 응답을 확인할 수 있게 함.
+
+```java
+mockMvc.perform(요청)
+```
+## 201 응답 받기
