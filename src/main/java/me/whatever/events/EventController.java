@@ -22,11 +22,13 @@ public class EventController {
 
     private final EventRepository eventRepository;
     private final ModelMapper modelMapper;
+    private final EventValidator eventValidator;
 
     @Autowired // 생성자가 하나만 있고, 생성자가 받아올 paramter가 하나만 있다면 Autowired 생략 가능
-    public EventController(EventRepository eventRepository, ModelMapper modelMapper) {
+    public EventController(EventRepository eventRepository, ModelMapper modelMapper, EventValidator eventValidator) {
         this.eventRepository = eventRepository;
         this.modelMapper = modelMapper;
+        this.eventValidator = eventValidator;
     }
 
     @PostMapping
@@ -34,6 +36,12 @@ public class EventController {
         if (errors.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
+
+        eventValidator.validate(eventDto, errors);
+        if (errors.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Event event = modelMapper.map(eventDto, Event.class);
         Event newEvent = this.eventRepository.save(event);
         // eventController에 있는 method인 createEvent의 eventId를 URI로 만든 것
