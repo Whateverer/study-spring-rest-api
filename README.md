@@ -124,11 +124,11 @@ mockMvc.perform(요청)
 MockMvc를 이용해서 기존의 Mock 웹이 있기 떄문에 EventRepository를 이용한 테스트가 실패 -> @MockBean으로 EventRepository를 넣어준다.
 
 ## 입력값 이외에 에러 발생
-ObjectMapper 커스터마이징
-ObjectMapper 확장 기능 사용
-json을 객체로 변환시키는 것 : deserialization
+ObjectMapper 커스터마이징    
+ObjectMapper 확장 기능 사용    
+json을 객체로 변환시키는 것 : deserialization    
 객체를 json으로 변환시키는 것 : serialization
 
-application.properties에 
-spring.jackson.deserialization.fail-on-unknown-properties=true 속성 추가
+application.properties에     
+spring.jackson.deserialization.fail-on-unknown-properties=true 속성 추가    
 : 받을 수 없는 필드를 가졌을 때 fail 시키는 것
