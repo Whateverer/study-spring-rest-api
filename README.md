@@ -132,3 +132,14 @@ json을 객체로 변환시키는 것 : deserialization
 application.properties에     
 spring.jackson.deserialization.fail-on-unknown-properties=true 속성 추가    
 : 받을 수 없는 필드를 가졌을 때 fail 시키는 것
+
+## Bad Request 처리
+@Valid와 BindingResult(또는 Errors)
+- BindingResult는 항상 @Valid 바로 다음 인자로 사용해야 함. (스프링 MVC)
+- @NotNull, @NotEmpty, @Min, @Max, ... 사용해서 입력값 바인딩할 때 에러 확인할 수 있음
+
+도메인 Validator 만들기
+- Validator 인터페이스 사용하기
+- 없이 만들어도 상관없음
+
+
