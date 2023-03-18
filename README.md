@@ -142,4 +142,3 @@ spring.jackson.deserialization.fail-on-unknown-properties=true 속성 추가
 - Validator 인터페이스 사용하기
 - 없이 만들어도 상관없음
 
-
