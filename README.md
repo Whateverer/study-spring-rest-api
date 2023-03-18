@@ -142,3 +142,31 @@ spring.jackson.deserialization.fail-on-unknown-properties=true 속성 추가
 - Validator 인터페이스 사용하기
 - 없이 만들어도 상관없음
 
+## 매개변수를 이용한 테스트 
+
+테스트에서 중복 제거    
+JUnitParams（Junit4 이용 시）    
+JUnit Jupiter Params（Junit5 이용 시)    
+
+테스트에 Parameter를 주어 중복된 코드를 줄일 수 있다.    
+테스트에 @ParameterizedTest 애노테이션 추가,    
+- 파라미터를 직접 입력 : @CsvSource 애노테이션에 다음과 같이 파라미터 설정    
+```java
+@CsvSource({
+            "0, 0, true",
+            "100, 0, false",
+            "0, 100, false"
+    })
+```
+- 파라미터를 메서드로 만들어 입력 : @MethodSource("parametersForOffline") 애노테이션 추가,    
+``` java 
+    private static Stream<Arguments> parametersForOffline() {
+        return Stream.of(
+                Arguments.of("강남", true),
+                Arguments.of(null, false),
+                Arguments.of("      ", false)
+        );
+    }
+```
+
+참고 : https://medium.com/techwasti/junit5-parameterized-tests-dc9b90afdc74
