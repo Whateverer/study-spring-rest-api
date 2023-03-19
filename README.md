@@ -170,3 +170,7 @@ JUnit Jupiter Params（Junit5 이용 시)
 ```
 
 참고 : https://medium.com/techwasti/junit5-parameterized-tests-dc9b90afdc74
+
+# 3. HATEOAS와 Self-DescriptiveMessage 적용
+## 스프링 HATEOAS 소개
+HyperMedia를 통해서 동적으로 정보를 주고 받을 수 있어야 한다.
