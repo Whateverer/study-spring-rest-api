@@ -173,4 +173,32 @@ JUnit Jupiter Params（Junit5 이용 시)
 
 # 3. HATEOAS와 Self-DescriptiveMessage 적용
 ## 스프링 HATEOAS 소개
+스프링 HATEOAS
+- 링크 만드는 기능
+- 리소스 만드는 기능
+	+ 리소스 : 데이터 + 링크
+- 링크 찾아주는 기능 
+	+ Traverson
+	+ LinkDiscoverers
+- 링크 
+	+ href
+	+ rel
+		* self
+		* profile
+		* ...
+		
 HyperMedia를 통해서 동적으로 정보를 주고 받을 수 있어야 한다.
+
+## 스프링 HATEOAS 적용
+```java
+public class EventResource extends RepresentationModel {
+}
+```
+EventResource를 만들어준다 (링크를 추가하기 위해)
+
+EventResource 만들기    
+- extends RepresentationModel의 문제     
+: 다시 테스트를 돌려보면 event따로 link영역이 따로 있는 것을 볼 수 있다.    
+event로 구분하고 싶지 않다면 @JsonUnwrapped로 해결
+	+ @JsonUnwrapped로 해결
+	+ extends EntityModel<Event>
