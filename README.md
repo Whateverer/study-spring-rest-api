@@ -121,7 +121,7 @@ mockMvc.perform(요청)
 - Mockito를 사용해서 mock 객체를 만들고 빈으로 등록해줌.
 - (주의) 기존 빈을 테스트용 빈이 대체한다.
 
-MockMvc를 이용해서 기존의 Mock 웹이 있기 떄문에 EventRepository를 이용한 테스트가 실패 -> @MockBean으로 EventRepository를 넣어준다.
+MockMvc를 이용해서 기존의 Mock 웹이 있기 때문에 EventRepository를 이용한 테스트가 실패 -> @MockBean으로 EventRepository를 넣어준다.
 
 ## 입력값 이외에 에러 발생
 ObjectMapper 커스터마이징    
