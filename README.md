@@ -238,4 +238,8 @@ RestDocMockMvc 커스터마이징
 - RestDocsMockMvcConfigurationCustomizer 구현한 빈 등록
 - @TestConfiguration
 
-
+## 스프링 REST Docs 각종 문서 조각 생성하기
+Relaxed 접두어
+- 장점 : 문서 일부분만 테스트 할 수 있다.
+- 단점 : 정확한 문서를 생성하지 못한다.    
+=> 권장하지 않음, 나중에 문서가 바뀌었을 때 알아차리지 못할 수 있음
