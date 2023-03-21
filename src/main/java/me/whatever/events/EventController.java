@@ -2,6 +2,8 @@ package me.whatever.events;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +54,7 @@ public class EventController {
         EventResource eventResource = new EventResource(event);
         eventResource.add(linkTo(EventController.class).withRel("query-events"));
         eventResource.add(selfLinkBuilder.withRel("update-event"));
+        eventResource.add(Link.of("/docs/index.html", LinkRelation.of("profile")));
         return ResponseEntity.created(createdUri).body(eventResource); // created를 보낼 때는 항상 URI가 있어야 한다.
     }
 }

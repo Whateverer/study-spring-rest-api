@@ -40,6 +40,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
 	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.3.2'
 	ext['junit-jupiter.version'] = '5.7.1'
+	// https://mvnrepository.com/artifact/org.asciidoctor/asciidoctor-gradle-plugin
+	implementation group: 'org.asciidoctor', name: 'asciidoctor-gradle-plugin', version: '0.4.0'
+
 }
 
 tasks.named('test') {
