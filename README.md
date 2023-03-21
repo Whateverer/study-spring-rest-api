@@ -202,3 +202,40 @@ EventResource 만들기
 event로 구분하고 싶지 않다면 @JsonUnwrapped로 해결
 	+ @JsonUnwrapped로 해결
 	+ extends EntityModel<Event>
+
+## 스프링 REST Docs 소개
+Asciidoctor를 사용해 plain text파일을 html로 변환해준다.
+REST Docs 자동 설정
+- @AutoConfigureRestDocs
+
+REST Docs 코딩
+- andDo(document("doc-name", snippets))
+- snippets
+	+ links()
+	+ requestParameters() + parameterWithName()
+	+ pathParameters() + parametersWithName()
+	+ requestParts() + partWithname()
+	+ requestPartBody()
+	+ requestPartFields()
+	+ requestHeaders() + headerWithName()
+	+ requestFields() + fieldWithPath()
+	+ responseHeaders() + headerWithName()
+	+ responseFields() + fieldWithPath()
+- Relaxed
+- Processor
+	+ preprocessRequest(prettyPrint())
+	+ preprocessResponse(prettyPrint())
+	
+문서 생성하기 
+- mvc package
+	+ test
+	+ prepare-package :: proccess-asciidoc
+	+ prepare-package :: copy-resources
+- 문서 확인
+	+ /docs/index.html
+
+RestDocMockMvc 커스터마이징
+- RestDocsMockMvcConfigurationCustomizer 구현한 빈 등록
+- @TestConfiguration
+
+
