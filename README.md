@@ -202,6 +202,16 @@ EventResource 만들기
 event로 구분하고 싶지 않다면 @JsonUnwrapped로 해결
 	+ @JsonUnwrapped로 해결
 	+ extends EntityModel<Event>
+Spring HATEOAS의 ResourceSupport는 deprecated됨.
+```
+ResourceSupport is now RepresentationModel
+
+Resource is now EntityModel
+
+Resources is now CollectionModel
+
+PagedResources is now PagedModel
+```
 
 ## 스프링 REST Docs 소개
 Asciidoctor를 사용해 plain text파일을 html로 변환해준다.
@@ -251,4 +261,6 @@ docker run --name rest -p 5432:5432 -e POSTGRES_PASSWORD=pass -d postgres
 애플리케이션 설정과 테스트 설정 중복 어떻게 줄일 것인가?
 - 프로파일과 @ActiveProfiles 활용 (test하는 Controller에 애노테이션 추가)
 
-
+## 인덱스 만들기
+- 다른 리소스에 대한 링크 제공
+- 문서화 
