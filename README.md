@@ -243,3 +243,12 @@ Relaxed 접두어
 - 장점 : 문서 일부분만 테스트 할 수 있다.
 - 단점 : 정확한 문서를 생성하지 못한다.    
 => 권장하지 않음, 나중에 문서가 바뀌었을 때 알아차리지 못할 수 있음
+
+## 테스트용 DB와 설정 분리하기
+```
+docker run --name rest -p 5432:5432 -e POSTGRES_PASSWORD=pass -d postgres
+```
+애플리케이션 설정과 테스트 설정 중복 어떻게 줄일 것인가?
+- 프로파일과 @ActiveProfiles 활용 (test하는 Controller에 애노테이션 추가)
+
+
