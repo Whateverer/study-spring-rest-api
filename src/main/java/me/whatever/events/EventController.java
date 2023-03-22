@@ -1,5 +1,6 @@
 package me.whatever.events;
 
+import me.whatever.common.ErrorsResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -37,12 +38,12 @@ public class EventController {
     @PostMapping
     public ResponseEntity createEvent(@RequestBody @Valid EventDto eventDto, Errors errors) {
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().body(errors);
+            return badRequest(errors);
         }
 
         eventValidator.validate(eventDto, errors);
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().body(errors);
+            return badRequest(errors);
         }
 
         Event event = modelMapper.map(eventDto, Event.class);
@@ -56,5 +57,9 @@ public class EventController {
         eventResource.add(selfLinkBuilder.withRel("update-event"));
         eventResource.add(Link.of("/docs/index.html", LinkRelation.of("profile")));
         return ResponseEntity.created(createdUri).body(eventResource); // created를 보낼 때는 항상 URI가 있어야 한다.
+    }
+
+    private ResponseEntity badRequest(Errors errors) {
+        return ResponseEntity.badRequest().body(new ErrorsResource(errors));
     }
 }
