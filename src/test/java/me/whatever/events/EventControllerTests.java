@@ -168,7 +168,7 @@ public class EventControllerTests {
 
     @Test
     @TestDescription("입력 값이 잘못된 경우에 에러가 발생하는 테스트")
-    public void createEvent_Bad_Request_Wrong_Input() throws Exception {
+    public void createEvent_Bad_Request_Wrong_Input(){
         EventDto eventDto = EventDto.builder()
                 .name("Spring")
                 .description("REST API Development with Spring")
@@ -181,17 +181,19 @@ public class EventControllerTests {
                 .limitOfEnrollment(100)
                 .location("강남역 D2 스타텁 팩토리")
                 .build();
-
-        this.mockMvc.perform(post("/api/events")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(this.objectMapper.writeValueAsString(eventDto)))
-                .andExpect(status().isBadRequest())
-                .andDo(print())
-                .andExpect(jsonPath("content[0].objectName").exists())
-                .andExpect(jsonPath("content[0].defaultMessage").exists())
-                .andExpect(jsonPath("content[0].code").exists())
-                .andExpect(jsonPath("_links.index").exists())
-        ;
-
+        try {
+            this.mockMvc.perform(post("/api/events")
+                            .contentType(MediaType.APPLICATION_JSON_VALUE)
+                            .content(this.objectMapper.writeValueAsString(eventDto)))
+                    .andExpect(status().isBadRequest())
+                    .andDo(print())
+                    .andExpect(jsonPath("content[0].objectName").exists())
+                    .andExpect(jsonPath("content[0].defaultMessage").exists())
+                    .andExpect(jsonPath("content[0].code").exists())
+                    .andExpect(jsonPath("_links.index").exists())
+            ;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -60,6 +60,6 @@ public class EventController {
     }
 
     private ResponseEntity badRequest(Errors errors) {
-        return ResponseEntity.badRequest().body(new ErrorsResource(errors));
+        return ResponseEntity.badRequest().body(ErrorsResource.of(errors));
     }
 }

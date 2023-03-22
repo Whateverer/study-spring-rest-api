@@ -11,8 +11,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 public class ErrorsResource extends EntityModel<Errors> {
-    public ErrorsResource(Errors content, Link... links) {
-        super(content, Arrays.asList(links));
-        add(linkTo(methodOn(IndexController.class).index()).withRel("index"));
+    public static ErrorsResource of(Errors errors) {
+        return (ErrorsResource) EntityModel.of(errors, linkTo(methodOn(IndexController.class).index()).withRel("index"));
     }
 }
