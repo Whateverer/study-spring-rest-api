@@ -2,6 +2,7 @@ package me.whatever.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.whatever.RestDocsConfiguration;
+import me.whatever.common.BaseControllerTest;
 import me.whatever.common.TestDescription;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -34,22 +35,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs // REST Docs 사용
-@Import(RestDocsConfiguration.class)
-@ActiveProfiles("test")
-public class EventControllerTests {
-    @Autowired
-    MockMvc mockMvc;
-    @Autowired
-    ObjectMapper objectMapper;
+
+public class EventControllerTests extends BaseControllerTest {
     @Autowired
     EventRepository eventRepository;
-
-    @Autowired
-    ModelMapper modelMapper;
 
     @Test
     @TestDescription("정상적으로 이벤트를 생성하는 테스트")
