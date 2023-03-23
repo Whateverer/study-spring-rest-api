@@ -264,3 +264,17 @@ docker run --name rest -p 5432:5432 -e POSTGRES_PASSWORD=pass -d postgres
 ## 인덱스 만들기
 - 다른 리소스에 대한 링크 제공
 - 문서화 
+
+# 4. 이벤트 조회 및 수정 REST API 개발
+## 이벤트 목록 조회 API 구현
+페이지, 정렬
+- 스프링 데이터 JPA가 제공하는 Pageable 사용
+
+Page<Event> 안에 들어있는 Event들은 EntityModel로 어떻게 변경할까?
+- 하나씩 순회하면서 직접 EntityModel<Event>로 매핑을 시킬지,
+- PagedResourcesAssembler<T> 사용하기
+
+테스트할 때 Pageable 파라미터 제공하는 방법
+- page : 0부터 시작
+- size : 기본값 20
+- sort : property.property(,ASC|DESC)
