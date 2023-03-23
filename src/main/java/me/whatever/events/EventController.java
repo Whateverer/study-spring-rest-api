@@ -3,14 +3,16 @@ package me.whatever.events;
 import me.whatever.common.ErrorsResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkRelation;
-import org.springframework.hateoas.MediaTypes;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.*;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,8 +60,14 @@ public class EventController {
         eventResource.add(Link.of("/docs/index.html", LinkRelation.of("profile")));
         return ResponseEntity.created(createdUri).body(eventResource); // created를 보낼 때는 항상 URI가 있어야 한다.
     }
-
+    @GetMapping
+    public ResponseEntity queryEvents(Pageable pageable, PagedResourcesAssembler<Event> assembler) {
+        Page<Event> page = this.eventRepository.findAll(pageable);
+        var pagedModel = assembler.toModel(page, e -> new EventResource(e)); // 각각의 이벤트를 이벤트리소스(모델)로 변경
+        pagedModel.add(Link.of("/docs/index.html#resources-events-list").withRel("profile"));
+        return ResponseEntity.ok(pagedModel);
+    }
     private ResponseEntity badRequest(Errors errors) {
-        return ResponseEntity.badRequest().body(ErrorsResource.of(errors));
+        return ResponseEntity.badRequest().body(new ErrorsResource(errors));
     }
 }
