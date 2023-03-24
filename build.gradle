@@ -42,6 +42,8 @@ dependencies {
 	ext['junit-jupiter.version'] = '5.7.1'
 	// https://mvnrepository.com/artifact/org.asciidoctor/asciidoctor-gradle-plugin
 	implementation group: 'org.asciidoctor', name: 'asciidoctor-gradle-plugin', version: '0.4.0'
+	// https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
+	implementation group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.3.12.RELEASE'
 
 }
 
