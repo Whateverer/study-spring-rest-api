@@ -54,7 +54,7 @@ class AccountServiceTest {
         // Expected
         String username = "random@email.com";
 
-        // When
+        // When & Then
         UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class,
                 () -> accountService.loadUserByUsername(username));
         assertTrue(exception.getMessage().contains(username));
