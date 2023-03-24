@@ -299,3 +299,16 @@ JPA 맵핑
 - @Table("Users")
 Users로 class명을 사용하고 싶다면 JPA 애노테이션인 @Table을 사용하면 예약어인 User도 class명에 사용가능
 
+## 스프링 시큐리티 적용
+스프링 시큐리티
+- 웹 시큐리티(Filter 기반 시큐리티) - 웹 요청에 보안인증을 하는 것
+- 메소드 시큐리티 - 웹과 상관 없이 어떤 메소드가 호출될 때 권한을 인증하는 
+- 이 둘 다 Security Interceptor를 사용
+	+ 리소스에 접근을 허용할 것이냐 말것이냐를 결정하는 로직이 들어있음.
+	
+어떤 요청이 왔을 때 ServletFilter가 이 요청을 가로채서 Spring Bean에 들어있는 SecurityInterceptor로 보냄
+SecurityContextHolder라는 쓰레드 로컬(한 스레드 내의 공유 자원)에서 인증정보를 확인 
+- 있으면 그대로 진행, 없으면 AuthenticationManager(로그인 담당)에서 로그인 처리 후 SecurityContextHolder에 담아놓는다.
+- AccessDecisionManager에서 인가 처리
+	
+UserDetailsService 구현
