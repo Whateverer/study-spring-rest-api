@@ -1,6 +1,7 @@
 package me.whatever.events;
 
 import lombok.*;
+import me.whatever.accounts.Account;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,6 +25,9 @@ public class Event {
     private boolean free;
     @Enumerated(EnumType.STRING) // 기본값은 순서로 ordinal, but String은 String 그대로 사용가능
     private EventStatus eventStatus = EventStatus.DRAFT;
+    // Event에서 단방향으로 참조
+    @ManyToOne
+    private Account manager;
 
     public void update() {
         // Update free
