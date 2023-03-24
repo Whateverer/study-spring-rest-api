@@ -312,3 +312,10 @@ SecurityContextHolder라는 쓰레드 로컬(한 스레드 내의 공유 자원)
 - AccessDecisionManager에서 인가 처리
 	
 UserDetailsService 구현
+
+## 스프링 시큐리티 기본 설정
+스프링 시큐리티 OAuth 2.0
+- AuthorizationServer: OAuth2 토큰 발행(/oauth/token) 및 토큰 인증(/oath/authorize)
+	+ Oder 0 (리소스 서버보다 우선 순위가 높다.)
+- ResourceServer: 리소스 요청 인증 처리(OAuth 2 토큰 검사)
+	+ Oder 3 (이 값은 현재 고칠 수 없음)
