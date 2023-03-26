@@ -11,6 +11,7 @@ import java.util.Set;
 public class Account {
     @Id @GeneratedValue
     private Integer id;
+    @Column(unique = true)
     private String email;
     private String password;
     // 하나의 Enum만 있는게 아니라 여러 개의 Enum을 가질 수 있음

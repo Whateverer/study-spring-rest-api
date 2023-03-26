@@ -1,5 +1,6 @@
 package me.whatever.accounts;
 
+import me.whatever.common.AppProperties;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
@@ -33,6 +34,9 @@ class AccountServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    AppProperties appProperties;
+
     @Test
     public void findByUserName() {
         // Given
@@ -47,10 +51,10 @@ class AccountServiceTest {
 
         // When
         UserDetailsService userDetailsService = (UserDetailsService) accountService;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(appProperties.getUserUsername());
 
         // Then
-        assertThat(this.passwordEncoder.matches(password, userDetails.getPassword())).isTrue();
+        assertThat(this.passwordEncoder.matches(appProperties.getUserPassword(), userDetails.getPassword())).isTrue();
     }
 
     @Test
