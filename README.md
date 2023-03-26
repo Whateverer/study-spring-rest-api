@@ -319,3 +319,6 @@ UserDetailsService 구현
 	+ Oder 0 (리소스 서버보다 우선 순위가 높다.)
 - ResourceServer: 리소스 요청 인증 처리(OAuth 2 토큰 검사)
 	+ Oder 3 (이 값은 현재 고칠 수 없음)
+	
+## 리소스 서버 설정
+
