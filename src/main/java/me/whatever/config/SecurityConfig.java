@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -40,9 +41,9 @@ public class SecurityConfig extends WebSecurityConfiguration {
         web.ignoring().mvcMatchers("/docs/index.html");
     }
 
-//    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+         http
                 .anonymous()
                 .and()
                 .formLogin()
@@ -50,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfiguration {
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/api/**").anonymous()
                 .anyRequest().authenticated();
+        return http.build();
     }
 
 }

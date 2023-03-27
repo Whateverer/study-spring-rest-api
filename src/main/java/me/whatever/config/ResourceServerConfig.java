@@ -22,14 +22,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .anonymous()
-                .and()
+                    .and()
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/api/**")
-                .anonymous()
+                    .permitAll()
                 .anyRequest()
-                .authenticated()
+                    .authenticated()
                 .and()
-                .exceptionHandling()
+                    .exceptionHandling()
                 .accessDeniedHandler(new OAuth2AccessDeniedHandler()); // 접근권한이 없는 경우 403에러를 내보내는 핸들러
     }
 }
