@@ -3,6 +3,7 @@ package me.whatever.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.whatever.RestDocsConfiguration;
 import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureRestDocs // REST Docs 사용
 @Import(RestDocsConfiguration.class)
 @ActiveProfiles("test")
-@Ignore
-public class BaseControllerTest {
+@Disabled
+public class BaseTest {
     @Autowired
     protected MockMvc mockMvc;
     @Autowired

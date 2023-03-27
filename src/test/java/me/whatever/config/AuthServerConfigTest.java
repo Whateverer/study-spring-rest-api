@@ -4,7 +4,7 @@ import me.whatever.accounts.Account;
 import me.whatever.accounts.AccountRole;
 import me.whatever.accounts.AccountService;
 import me.whatever.common.AppProperties;
-import me.whatever.common.BaseControllerTest;
+import me.whatever.common.BaseTest;
 import me.whatever.common.TestDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-class AuthServerConfigTest extends BaseControllerTest {
+class AuthServerConfigTest extends BaseTest {
     @Autowired
     AccountService accountService;
 
